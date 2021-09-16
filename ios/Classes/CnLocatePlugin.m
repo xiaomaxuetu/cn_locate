@@ -7,15 +7,15 @@
 @property(nonatomic) AMapLocationManager *locationManager;
 
 @end
-FlutterMethodChannel* channel;
+FlutterMethodChannel* cn_locate_channel;
 @implementation CnLocatePlugin
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  channel = [FlutterMethodChannel
+    cn_locate_channel = [FlutterMethodChannel
       methodChannelWithName:@"cn_locate"
             binaryMessenger:[registrar messenger]];
   CnLocatePlugin* instance = [[CnLocatePlugin alloc] init];
-  [registrar addMethodCallDelegate:instance channel:channel];
+  [registrar addMethodCallDelegate:instance channel:cn_locate_channel];
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
