@@ -1,0 +1,40 @@
+PODS:
+  - AMapFoundation (1.6.8)
+  - AMapLocation (2.7.0):
+    - AMapFoundation (~> 1.6.8)
+  - cn_locate (0.0.1):
+    - AMapLocation
+    - Flutter
+  - Flutter (1.0.0)
+  - "permission_handler (5.1.0+2)":
+    - Flutter
+
+DEPENDENCIES:
+  - AMapLocation
+  - cn_locate (from `.symlinks/plugins/cn_locate/ios`)
+  - Flutter (from `Flutter`)
+  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
+
+SPEC REPOS:
+  trunk:
+    - AMapFoundation
+    - AMapLocation
+
+EXTERNAL SOURCES:
+  cn_locate:
+    :path: ".symlinks/plugins/cn_locate/ios"
+  Flutter:
+    :path: Flutter
+  permission_handler:
+    :path: ".symlinks/plugins/permission_handler/ios"
+
+SPEC CHECKSUMS:
+  AMapFoundation: 32e9a0264ee62f5aa2aaf82bdafdda7985ce09c7
+  AMapLocation: 720eb034995c6198d480f8f7bbd714bb08bb9ef7
+  cn_locate: f3796a4673268ee16579a0ad75b48d08bbb16621
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
+
+PODFILE CHECKSUM: 7a5518208fc05ad3ac360476bd8c79a765281f4d
+
+COCOAPODS: 1.10.1
