@@ -16,7 +16,7 @@ class CnLocate {
   static final _onLocationChange = StreamController<AmapLocation>.broadcast();
 
   CnLocate._();
-  static Future<Null> _handleMessages(MethodCall call) async {
+  static Future _handleMessages(MethodCall call) async {
     switch (call.method) {
       case 'onLocationChange':
         AmapLocation _amapLocation = AmapLocation.fromJson(call.arguments);
@@ -31,7 +31,7 @@ class CnLocate {
       {CnLocateInitCallBack? callBack, required AMapOptions options}) {
     _channel.setMethodCallHandler(_handleMessages);
     var map = options.toJson();
-    var resultBean;
+
     Isolate.current.addErrorListener(RawReceivePort((dynamic pair) {
       var isolateError = pair as List<dynamic>;
       var _error = isolateError.first;
@@ -41,10 +41,11 @@ class CnLocate {
     runZonedGuarded(() async {
       final String result = await _channel.invokeMethod('initSdk', map);
       Map resultMap = json.decode(result);
-      resultBean = InitResultInfo.fromJson(resultMap as Map<String, dynamic>);
+      var resultBean =
+          InitResultInfo.fromJson(resultMap as Map<String, dynamic>);
       callBack!(resultBean);
     }, (error, stackTrace) {
-      resultBean = InitResultInfo();
+      var resultBean = InitResultInfo();
       callBack!(resultBean);
     });
     FlutterError.onError = (details) {
@@ -55,11 +56,11 @@ class CnLocate {
     };
   }
 
-  static Future<Null> start() async {
+  static Future start() async {
     await _channel.invokeMethod('startLocate');
   }
 
-  static Future<Null> stop() async {
+  static Future stop() async {
     await _channel.invokeMethod('stopLocate');
   }
 }

@@ -1,7 +1,7 @@
 name: cn_locate
 description: A new flutter plugin project.
 version: 0.0.1
-homepage:
+homepage: https://github.com/xiaomaxuetu/cn_locate
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

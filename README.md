@@ -1,15 +1,45 @@
 # cn_locate
 
-A new flutter plugin project.
+封装的原生flutter高德定位组件.
 
-## Getting Started
+## 用法
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```dart
+import 'package:cn_locate/cn_locate.dart';
+...
+initLocation() async {
+    // if (await Permission.location.serviceStatus.isEnabled) {
+    //   var options = AMapOptions(
+    //       locationMode: LocationMode.hightAccuracy, isNeedAddress: true);
+    //   CnLocate.init(
+    //       options: options,
+    //       callBack: (result) {
+    //         print("------sdk初始化${result.message}");
+    //       });
+    // } else {
+    if (await Permission.locationWhenInUse.request().isGranted) {
+      if (await Permission.locationAlways.request().isGranted) {
+        var options = AMapOptions(
+            locationMode: LocationMode.hightAccuracy,
+            isNeedAddress: true,
+            interval: 10000,
+            isGpsFirst: true,
+            isMockEnable: true,
+            isOnceLocation: false,
+            apiKey: "0f5ae242daaa662569c2806f426b7020");
+        CnLocate.init(
+            options: options,
+            callBack: (result) {
+              print("------sdk初始化${result.message}");
+            });
+        CnLocate.onLocationChange.listen((event) {
+          print(event);//返回定位成功后的坐标
+        });
+      } else {
+        openAppSettings();
+      }
+    }
+    //}
+  }
+```
 
