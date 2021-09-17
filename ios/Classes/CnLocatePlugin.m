@@ -81,7 +81,7 @@ FlutterMethodChannel* cn_locate_channel;
     };
     NSData * jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
               NSString * json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    [channel invokeMethod:@"onLocationChange" arguments:json];
+    [cn_locate_channel invokeMethod:@"onLocationChange" arguments:json];
 }
 
 @end
